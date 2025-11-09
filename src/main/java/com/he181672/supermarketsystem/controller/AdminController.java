@@ -1,11 +1,9 @@
 package com.he181672.supermarketsystem.controller;
 
-import com.he181672.supermarketsystem.dto.InventoryDTO;
-import com.he181672.supermarketsystem.dto.InventoryTransactionsDTO;
-import com.he181672.supermarketsystem.dto.ProductDTO;
-import com.he181672.supermarketsystem.dto.UserDTO;
+import com.he181672.supermarketsystem.dto.*;
 import com.he181672.supermarketsystem.entity.Inventory;
 import com.he181672.supermarketsystem.entity.Product;
+import com.he181672.supermarketsystem.entity.User;
 import com.he181672.supermarketsystem.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +23,7 @@ public class AdminController {
     private final UserService userService;
     @GetMapping("/users")
     public ResponseEntity<?> getAdminUser() {
-        List<UserDTO> userDTOS =userService.manageUsers();
+        List<UserDTO> userDTOS =userService.getAllUser();
         return ResponseEntity.ok(userDTOS);
     }
     @GetMapping("/request")
@@ -56,5 +54,17 @@ public class AdminController {
                                                      @RequestBody InventoryDTO inventoryDTO) {
         Inventory inventory = inventoryService.updateInventory(inventoryId,inventoryDTO);
         return ResponseEntity.ok().body(inventory);
+    }
+
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable int userId, @RequestBody UserDTO userDTO) {
+        User user = userService.updateUser(userId,userDTO);
+        return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/createUser")
+    public ResponseEntity<User> createUser(@RequestBody RegisterDTO dto) {
+        User user = userService.registerUser(dto);
+        return ResponseEntity.ok(user);
     }
 }

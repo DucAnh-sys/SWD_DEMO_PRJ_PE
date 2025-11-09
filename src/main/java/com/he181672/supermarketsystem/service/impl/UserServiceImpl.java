@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> manageUsers() {
+    public List<UserDTO> getAllUser() {
         return userRepository.findAll()
                 .stream()
                 .map(UserDTO::new)
@@ -58,19 +58,38 @@ public class UserServiceImpl implements UserService {
         if(!dto.getPhoneNumber().matches("^\\d{9,11}$")) {
             throw new RuntimeException("Số điện thoại không hợp lệ");
         }
+
         User newUser = new User();
         newUser.setUsername(dto.getUsername());
         newUser.setPasswordHash(dto.getPassword());
-        newUser.setRole(roleRepository.findRoleByRoleId(1));
+        newUser.setRole(
+                roleRepository.findRoleByRoleId(
+                        dto.getRole() != null ? dto.getRole() : 1
+                )
+        );
+
         newUser.setFullName(dto.getFullName());
         newUser.setEmail(dto.getEmail());
         newUser.setPhoneNumber(dto.getPhoneNumber());
-        newUser.setAddress("");
+        newUser.setAddress(dto.getAddress());
         newUser.setBalance(0.0);
         newUser.setIsActive(true);
         userRepository.save(newUser);
         return newUser;
     }
+
+    @Override
+    public User updateUser(int userId, UserDTO dto) {
+        User user = userRepository.findUserByUserId(userId);
+        user.setFullName(dto.getFullName());
+        user.setEmail(dto.getEmail());
+        user.setBalance(dto.getBalance());
+        user.setUsername(dto.getUsername());
+        userRepository.save(user);
+        return user;
+    }
+
+
 
 
 }

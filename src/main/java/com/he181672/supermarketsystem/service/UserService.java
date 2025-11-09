@@ -13,7 +13,10 @@ public interface UserService {
 
     User Profile(int userId);
 
-    List<UserDTO> manageUsers();
+    List<UserDTO> getAllUser();
 
     User registerUser(RegisterDTO dto);
+
+    User updateUser(int userId, UserDTO dto);
+
 }

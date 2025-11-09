@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
+    private Integer userId;
     private String username;
     private String email;
     private String role;
@@ -17,6 +18,7 @@ public class UserDTO {
     private boolean active;
 
     public UserDTO(User user) {
+        this.userId = user.getUserId();
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.role = user.getRole().getRoleName();

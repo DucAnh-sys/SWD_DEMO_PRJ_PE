@@ -22,7 +22,6 @@ public class OrderServiceImpl implements OrderService {
     private final CartItemRepository cartItemRepository;
     @Override
     public void createOrder(OrderDTO orderdto) {
-
         User user = userRepository.findUserByUserId(orderdto.getUserId());
         if (user == null) {
             throw new RuntimeException("User not found");
@@ -35,7 +34,6 @@ public class OrderServiceImpl implements OrderService {
                 .deliveryStatus(Order.DeliveryStatus.Pending)
                 .deliveryAddress(user.getAddress())
                 .orderDate(LocalDateTime.now()).build();
-
 
         List<OrderItem> orderItems = new ArrayList<>();
 

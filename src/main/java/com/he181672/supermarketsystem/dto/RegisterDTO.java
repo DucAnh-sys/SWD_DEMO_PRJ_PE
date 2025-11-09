@@ -13,4 +13,6 @@ public class RegisterDTO {
     private String email;
     private String fullName;
     private String phoneNumber;
+    private Integer role;
+    private String address;
 }
