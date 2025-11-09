@@ -2,6 +2,7 @@ package com.he181672.supermarketsystem.service;
 
 
 import com.he181672.supermarketsystem.dto.LoginDTO;
+import com.he181672.supermarketsystem.dto.RegisterDTO;
 import com.he181672.supermarketsystem.dto.UserDTO;
 import com.he181672.supermarketsystem.entity.User;
 
@@ -13,4 +14,6 @@ public interface UserService {
     User Profile(int userId);
 
     List<UserDTO> manageUsers();
+
+    User registerUser(RegisterDTO dto);
 }

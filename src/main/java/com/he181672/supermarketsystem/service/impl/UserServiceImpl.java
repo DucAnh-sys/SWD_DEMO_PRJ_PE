@@ -1,8 +1,10 @@
 package com.he181672.supermarketsystem.service.impl;
 
 import com.he181672.supermarketsystem.dto.LoginDTO;
+import com.he181672.supermarketsystem.dto.RegisterDTO;
 import com.he181672.supermarketsystem.dto.UserDTO;
 import com.he181672.supermarketsystem.entity.User;
+import com.he181672.supermarketsystem.repository.RoleRepository;
 import com.he181672.supermarketsystem.repository.UserRepository;
 import com.he181672.supermarketsystem.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-
+    private final RoleRepository roleRepository;
     @Override
     public User login(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getUsername());
@@ -43,5 +45,32 @@ public class UserServiceImpl implements UserService {
                 .map(UserDTO::new)
                 .toList();
     }
+
+    @Override
+    public User registerUser(RegisterDTO dto) {
+        User user = userRepository.findByUsername(dto.getUsername());
+        if(user != null) {
+            throw new RuntimeException(" UserName đã tồn tại");
+        }
+        if (userRepository.findUserByEmail(dto.getEmail()) != null) {
+            throw new RuntimeException("Email đã tồn tại");
+        }
+        if(!dto.getPhoneNumber().matches("^\\d{9,11}$")) {
+            throw new RuntimeException("Số điện thoại không hợp lệ");
+        }
+        User newUser = new User();
+        newUser.setUsername(dto.getUsername());
+        newUser.setPasswordHash(dto.getPassword());
+        newUser.setRole(roleRepository.findRoleByRoleId(1));
+        newUser.setFullName(dto.getFullName());
+        newUser.setEmail(dto.getEmail());
+        newUser.setPhoneNumber(dto.getPhoneNumber());
+        newUser.setAddress("");
+        newUser.setBalance(0.0);
+        newUser.setIsActive(true);
+        userRepository.save(newUser);
+        return newUser;
+    }
+
 
 }

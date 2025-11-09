@@ -31,6 +31,8 @@ public class User {
     @Column(nullable = true, length = 100)
     private String address;
 
+    @Column(nullable = true, length = 100)
+    private String phoneNumber;
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
