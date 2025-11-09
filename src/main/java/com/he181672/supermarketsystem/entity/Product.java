@@ -25,13 +25,11 @@ public class Product {
 
     private Double price;
 
-    @Column(name = "stock_quantity")
-    private Integer stockQuantity;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
-    private Integer status;
+    private Boolean status;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

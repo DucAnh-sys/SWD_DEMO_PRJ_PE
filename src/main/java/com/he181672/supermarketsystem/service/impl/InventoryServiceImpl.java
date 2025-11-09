@@ -1,6 +1,7 @@
 package com.he181672.supermarketsystem.service.impl;
 
 import com.he181672.supermarketsystem.dto.InventoryDTO;
+import com.he181672.supermarketsystem.dto.ProductDTO;
 import com.he181672.supermarketsystem.entity.Inventory;
 import com.he181672.supermarketsystem.entity.Product;
 import com.he181672.supermarketsystem.repository.InventoryRepository;
@@ -61,5 +62,19 @@ public class InventoryServiceImpl implements InventoryService {
         productRepository.save(product);
         return inventoryRepository.save(inventory);
     }
+
+    @Override
+    public void createInitialInventory(Product product, int quantity, int minQuantity) {
+
+        Inventory inventory = new Inventory();
+        inventory.setProduct(product);
+        inventory.setQuantity((double) quantity);
+        inventory.setMinQuantity((double) minQuantity);
+        inventory.setLastUpdated(LocalDateTime.now());
+
+        inventoryRepository.save(inventory);
+    }
+
+
 
 }

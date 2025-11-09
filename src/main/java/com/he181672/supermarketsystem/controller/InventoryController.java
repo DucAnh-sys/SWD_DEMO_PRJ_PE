@@ -28,4 +28,6 @@ public class InventoryController {
         Inventory inventory = inventoryService.updateInventory(inventoryId,inventoryDTO);
         return ResponseEntity.ok().body(inventory);
     }
+
+
 }
