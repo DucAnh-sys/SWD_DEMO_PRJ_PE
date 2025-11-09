@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class RechargeRequestController {
     private final RechargeRequestService rechargeRequestService;
-    @GetMapping("/admin/request")
-    public ResponseEntity<?> getAllRequest() {
-        return ResponseEntity.ok(rechargeRequestService.getAllRechargeRequests());
-    }
+
 
     @PostMapping("/user/deposit")
     public ResponseEntity<?> getRechargeRequest(@RequestBody RechargeRequestDTO rechargeRequestDTO) {

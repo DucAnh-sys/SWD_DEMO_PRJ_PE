@@ -14,20 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class InventoryController {
-    private final InventoryService inventoryService;
 
-    @GetMapping("/admin/inventory")
-    public ResponseEntity<List<InventoryDTO>> getInventory() {
-        List<InventoryDTO> listInventoryDTO = inventoryService.getAllInventory();
-        return new ResponseEntity<>(listInventoryDTO, HttpStatus.OK);
-    }
-    
-    @PutMapping("/admin/inventory/{inventoryId}")
-    public ResponseEntity<Inventory> updateInventory(@PathVariable int inventoryId,
-                                                     @RequestBody InventoryDTO inventoryDTO) {
-        Inventory inventory = inventoryService.updateInventory(inventoryId,inventoryDTO);
-        return ResponseEntity.ok().body(inventory);
-    }
 
 
 }

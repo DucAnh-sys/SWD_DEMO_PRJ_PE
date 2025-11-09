@@ -16,11 +16,5 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class InventoryTransactionsController {
-    private final InventoryTransactionsService inventoryTransactionsService;
 
-    @GetMapping("/admin/inventory-transactions")
-    public ResponseEntity<List<InventoryTransactionsDTO>> getInventoryTransactions() {
-        List<InventoryTransactionsDTO> list = inventoryTransactionsService.getAllInventoryTransactions();
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
 }

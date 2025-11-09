@@ -20,10 +20,6 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/admin/users")
-    public ResponseEntity<?> getAdminUser() {
-        List<UserDTO> userDTOS =userService.manageUsers();
-        return ResponseEntity.ok(userDTOS);
-    }
+
 
 }

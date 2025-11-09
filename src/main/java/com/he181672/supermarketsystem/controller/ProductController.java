@@ -20,10 +20,5 @@ public class ProductController {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
-    @PostMapping("/admin/addProducts")
-    public ResponseEntity<Product> addProduct(@RequestBody ProductDTO dto) {
-        System.out.println(dto.toString());
-        Product product = productService.addNewProduct(dto);
-        return ResponseEntity.ok(product);
-    }
+
 }
