@@ -4,16 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class CartDTO {
-    private Long cartId;
-    private int userId;
+public class InventoryDTO {
+    private int inventoryId;
     private int productId;
-    private int quantity;
     private String productName;
-    private String description;
-    private double price;
+    private String supplierName;
+    private double quantity;
+    private double minQuantity;
+    private LocalDateTime lastUpdated;
 }

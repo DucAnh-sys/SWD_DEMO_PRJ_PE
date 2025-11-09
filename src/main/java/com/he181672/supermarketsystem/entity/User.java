@@ -28,6 +28,9 @@ public class User {
     @Column(nullable = false, length = 100)
     private String fullName;
 
+    @Column(nullable = true, length = 100)
+    private String address;
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;

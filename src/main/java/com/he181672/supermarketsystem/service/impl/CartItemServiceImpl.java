@@ -55,6 +55,7 @@ public class CartItemServiceImpl implements CartItemService {
         List<CartDTO> cartDTOList = new ArrayList<>();
         for (CartItem cartItem : cartItems) {
             CartDTO cartDTO = new CartDTO();
+            cartDTO.setCartId(cartItem.getCartItemId());
             cartDTO.setUserId(userId);
             cartDTO.setProductId(cartItem.getProduct().getProductId());
             cartDTO.setDescription(cartItem.getProduct().getDescription());

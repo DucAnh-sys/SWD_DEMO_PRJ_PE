@@ -14,8 +14,10 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Integer productId;
 
+    @Column(name = "product_name", nullable = false)
     private String productName;
 
     @Column(columnDefinition = "TEXT")
@@ -23,13 +25,19 @@ public class Product {
 
     private Double price;
 
+    @Column(name = "stock_quantity")
     private Integer stockQuantity;
 
+    @Column(name = "is_deleted")
     private Boolean isDeleted;
 
-    private Integer status; // 1 = Available, 0 = Out of Stock
+    private Integer status;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private ProductCategory category;
+
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
 }
