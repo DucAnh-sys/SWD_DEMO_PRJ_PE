@@ -29,7 +29,6 @@ public class CartItemServiceImpl implements CartItemService {
         Product product = productRepository.findById(dto.getProductId())
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
-        // Kiểm tra tồn tại
         CartItem existing = cartItemRepository
                 .findCartItemByUserAndProduct(user, product);
 
@@ -38,7 +37,6 @@ public class CartItemServiceImpl implements CartItemService {
             return cartItemRepository.save(existing);
         }
 
-        // Nếu chưa có product trong cart → tạo
         CartItem cartItem = new CartItem();
         cartItem.setUser(user);
         cartItem.setProduct(product);

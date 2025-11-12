@@ -22,7 +22,7 @@ public class RechargeRequest {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
-    private User user; // ánh xạ sang entity Users của bạn
+    private User user;
 
     @Column(name = "full_name", nullable = false, length = 100)
     private String fullName;

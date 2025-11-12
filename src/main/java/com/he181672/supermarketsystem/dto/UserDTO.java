@@ -1,6 +1,4 @@
 package com.he181672.supermarketsystem.dto;
-
-
 import com.he181672.supermarketsystem.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;

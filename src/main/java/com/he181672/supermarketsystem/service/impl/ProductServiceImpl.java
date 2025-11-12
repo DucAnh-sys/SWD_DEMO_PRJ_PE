@@ -39,17 +39,13 @@ public class ProductServiceImpl implements ProductService {
                         .orElseThrow(() -> new RuntimeException("Category not found"))
         );
 
-        // lấy supplier
         product.setSupplier(
                 supplierRepository.findById(dto.getSupplierId())
                         .orElseThrow(() -> new RuntimeException("Supplier not found"))
         );
 
         productRepository.save(product);
-
-        // ✅ gọi inventory service để tạo inventory
         inventoryService.createInitialInventory(product, dto.getQuantity(), dto.getMinQuantity());
-
         return product;
     }
 

@@ -14,7 +14,7 @@ public class CorsConfig {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173")
                         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-                        .allowCredentials(true) // Luôn gửi cookie --> store token vào cookie thay cho localStorage
+                        .allowCredentials(true)
                         .allowedHeaders("*")
                 ;
             }
